@@ -21,9 +21,6 @@ import java.util.Objects;
 import static com.coupong.constant.BaseStatus.*;
 
 @Entity(name = "coupon")
-@Getter
-@ToString
-@NoArgsConstructor(access = AccessLevel.PROTECTED)  // JPA를 위해 기본생성자 추가
 public class Coupon implements Serializable {
 
     private static final long serialVersionUID = 2L;
@@ -64,6 +61,27 @@ public class Coupon implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    protected Coupon() {}  // JPA를 위해 기본생성자 추가
+
+    protected Coupon(Long id, String name, CouponKind kind
+            , Integer discntRate, Integer maxDiscntPrice, Integer minOrderAmt, Integer totalCnt, Integer issuedCnt
+            , CouponStatus status, LocalDateTime applyAt, LocalDateTime expireAt, LocalDateTime createdAt, LocalDateTime updatedAt) {
+
+        this.id = id;
+        this.name = name;
+        this.kind = kind;
+        this.discntRate = discntRate;
+        this.maxDiscntPrice = maxDiscntPrice;
+        this.minOrderAmt = minOrderAmt;
+        this.totalCnt = totalCnt;
+        this.issuedCnt = issuedCnt;
+        this.status = status;
+        this.applyAt = applyAt;
+        this.expireAt = expireAt;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj) return true;
@@ -80,6 +98,18 @@ public class Coupon implements Serializable {
         return Objects.hash(id);
     }
 
+    /**
+     * 정적 팩토리 메서드
+     * @param name
+     * @param kind
+     * @param discntRate
+     * @param maxDiscntPrice
+     * @param minOrderAmt
+     * @param totalCnt
+     * @param applyAt
+     * @param expireAt
+     * @return
+     */
     public static Coupon createCoupon(String name, CouponKind kind
             , Integer discntRate, Integer maxDiscntPrice, Integer minOrderAmt, Integer totalCnt
             , LocalDateTime applyAt, LocalDateTime expireAt) {
@@ -95,6 +125,62 @@ public class Coupon implements Serializable {
         coupon.setApplyAt(applyAt);
         coupon.setExpireAt(expireAt);
         return coupon;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public CouponKind getKind() {
+        return kind;
+    }
+
+    public Integer getDiscntRate() {
+        return discntRate;
+    }
+
+    public Integer getMaxDiscntPrice() {
+        return maxDiscntPrice;
+    }
+
+    public Integer getMinOrderAmt() {
+        return minOrderAmt;
+    }
+
+    public Integer getTotalCnt() {
+        return totalCnt;
+    }
+
+    public CouponStatus getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getApplyAt() {
+        return applyAt;
+    }
+
+    public LocalDateTime getExpireAt() {
+        return expireAt;
+    }
+
+    public Integer getIssuedCnt() {
+        return issuedCnt;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    private void setId(Long id) {
+        this.id = id;
     }
 
     private void setName(String name) {
