@@ -6,7 +6,6 @@ import lombok.ToString;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
-@ToString
 public class CouponDto {
 
     @NotBlank
