@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
 public class Item {
     @Id
     @GeneratedValue
@@ -56,5 +55,53 @@ public class Item {
         this.remains -= quantity;
         this.status = 1;
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getRid() {
+        return rid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getOrderCount() {
+        return orderCount;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public Integer getRemains() {
+        return remains;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }
